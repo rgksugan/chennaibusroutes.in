@@ -1,0 +1,495 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="jquery-ui-1.8.20.custom.css" />
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script
+	src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+
+<title>Busroutes.in</title>
+<script type="text/javascript" charset="utf-8" src="cordova-1.6.1.js"></script>
+<script>
+	$(function() {
+		var stages = [ "Kolapakkam Colony", "Geeyee Housing", "Sholavaram",
+				"Illalur Junction", "Chenglepet N.T.", "Kondakkarai",
+				"Kandasamy Nagar", "Vadaperumbakkam",
+				"Somangalam Rd Jn/N.V.R.D.", "Chembakkam Junction",
+				"Adambakkam P.S", "Gangai Adi Kuppam", "Mylapore",
+				"Rettambedu", "D.M.S", "Water Supply Head Work",
+				"N4 Police Station", "Mogaipair Road Jn.", "Koyambedu P.S",
+				"Mahakavi Bharathi Nagar", "Thathanmanji", "Vandaloor Rd.Jn",
+				"Sathankuppam", "Thozhudur", "Kottivakkam",
+				"Ptc Quarter / Eswarantemp", "Avadi", "Shivashanmugapuram",
+				"Ashok Leyland", "Postal Audit Office", "Korattur",
+				"South Boag & S.East Boag", "Perumal Koil", "Veerapuram",
+				"Egmore North R.S.", "Kallikalam", "Sirucheri", "Dasamahan",
+				"Beemanthangal", "Thazhankuppam", "Ekkadu Kandigai",
+				"Chinna Kodungaiyur", "Ernavoor Gate", "Koman Nagar Rd Jn.",
+				"Malligai Nagar Ave", "Uppalayam", "Vazhuthalambedu",
+				"Thailapuram", "Kavanoor Koot Road", "I.R.T. Rd.Jn.",
+				"Gurunanak College", "Palavasthic Chemicals", "Agaram",
+				"Sunguvarchathiram", "Veppampattu Eswaran Nagar",
+				"Manavalan Nagar", "Moolakarai", "Kattu Koot Road", "Vichoor",
+				"Karungudi Pallam", "Anna Nagar East", "Travellers Bangalow",
+				"Amarambedu Chatram", "Lucas Tvs", "Mathur", "Sozhipalayam",
+				"Alandur Depot", "Vayalur", "St Thomas Mount Po", "Regal",
+				"Besant Nagar W.Tank", "Aaya Kolathur", "Aayurveda Ashramam",
+				"Pammadukulam", "G.R.Kandikai", "Aranvoyal Kuppam",
+				"Periyapalayam", "P1 P.S", "Mudichur Village",
+				"Poonthandalam Rd.Jn.", "Perungalathur (Old)",
+				"Dr.Ambedhar Bridge", "Rajapalayam", "Uthandi Village",
+				"Butt Road", "Periyar Bridge", "Fire Station", "I.C.F", "Ford",
+				"Ramapuram (L.N.P Koil)", "Univercity Club", "Ayanallur",
+				"Mettukandigai", "Polivakkam", "Perambur R.S",
+				"Koymabedu Market", "Clive Battery", "Padappai",
+				"Srinivasa Nagar", "Chepauk", "Jn.Of Alapakkam & E.V.R.",
+				"Perumbakkam Colony(Indran", "Angalamman Koil",
+				"Kadhavoor Rd.Jn.", "Shanthi/Dams Rd.", "Vyasarpadi",
+				"Periyal Nembili Village", "Pandithamedu", "Kanniamman Nagar",
+				"Nazarathpet", "Peruvoyal", "Vanjivanchery",
+				"Maraimalai Nagar I.E.", "Oragadam O.T.", "Gnanamoorthy Nagar",
+				"Nasic Nagar", "Chromepet Lakshmipuram", "Nungambakkam R.S",
+				"Mogalivakkam / Mari Ammn", "Salamangalam Koot Road",
+				"Royapetta Hospital", "Vadapalani B.S",
+				"Koyambedu Rohini Theater", "Minjur B.D.O", "Avadi Circle",
+				"Karayancahvadi", "Pallavan Nagar", "Adi Dravidar Hostel",
+				"Madanakuppam", "Napalayam", "C.R.P.Cross Rd.", "Grand Line",
+				"Sothupermedu", "Koovoor", "Sri Ram Engg.College", "Thalambur",
+				"Pattikulam Colony", "Padi Kuppam", "Nanganallur",
+				"Kosavampettai", "Mogapair East", "Tondaiayrpet",
+				"Vazhuthunaimedu", "Nathambedu Road Jn.", "Nathamuni Talkies",
+				"Oothukadu Cross Road", "Thandalam Village",
+				"Periyapalayam Rd Jn.", "Indira Nagar Water Tank",
+				"Korukkupet R.S", "Karasangal", "Arani", "Nellikuppam",
+				"Kolappanchery", "Jaffarkhan Pet", "Pushpagiri Rd. Jn.",
+				"Muthumariamman Koil", "Noothancheri", "V.House",
+				"Brindavan Colony", "Kattur", "Dideer Nagar", "Vengatapuram",
+				"Kosavan Palayam", "Mogalivakkam", "St Thomas Mount",
+				"Moulivakkam", "Kollaicheri", "Abirami Madam",
+				"Koilpathagai Rd.Jn.", "Thirunindravoor Rly.Stn.",
+				"Sakthi Vinayagar Koil", "Velachery Vijaya Nagar",
+				"Sirukalathur", "Sidco Nagar", "Mambakkam Rdjn./Venkatama",
+				"Theveripakkam", "Mathur Rd. Jn.,", "Taramani", "Vandaloor",
+				"Kandigai", "Vadamadurai", "Kavaraped", "Medavakkam Colony",
+				"Malai Pattu", "Angadu", "Mannivakkam Road Jn.",
+				"Melkondaiyur", "Women'S Polytechnic", "Kannan Theater",
+				"Madurapakkam", "Thandalam", "Vivek & Co (Krishnan Koil",
+				"Puduvoyal", "A.V.Construction", "Pakkam Village",
+				"Lady Mctm School/Millers", "Salt Office", "Lattice Bridge",
+				"I.C.I.", "Pulipakkam", "Vengambakkam Rd Jn.", "Ammur Colony",
+				"Chathiram", "Thiruvotriyur Temple", "Thandalam Koot Road",
+				"Palavakkam", "Triplicane", "Poonamallee", "Settimedu",
+				"T.V.K.Nagar", "Mambakkam Temple", "Kakkalur", "Kadambathur",
+				"Oil Mill", "Amarambedu", "Senneerkuppam", "Karumbakkam",
+				"Ramapuram", "Pozhichalur", "Pudur High School",
+				"Kundrathur B.S", "Kanchivoyal", "Easwaran Temple/Ptc Qrts.",
+				"Kannadapalayam", "Vidyodaya", "Aafs Cross Road",
+				"Coronation Nagar", "Elango Nagar Officer Colo",
+				"Water Pipe Thanthankuppam", "Valliyur School",
+				"Thirumangalam", "Manali", "Doveton",
+				"Jn.Of Mambakkam & O.Bakka", "Chola Mandal", "Red Hills",
+				"Krishnapuram", "Moolakadai", "Melnallathur", "Kadhavoor",
+				"Arasankazhani", "Maharani", "Puliyur Kandigai",
+				"Jn.Of Manali Rd.Chinna Ko", "Melmallikaipattu", "Panjetti",
+				"Kadapakkam", "Priyan Kuppam", "Picture Post",
+				"Bharatha Matha St", "M.M.C", "Nerkundram",
+				"Mootakaran Chavadi", "Pozhal", "Screw Factory",
+				"Thirunindravoor P.U.O.", "Perambur B.S",
+				"Sathiyavedu Koot Road", "Thommaram Bedu",
+				"Minjur New Terminus", "Vasanthi Amman Koil", "Valluvarkottam",
+				"Pozhal Camp", "Collector Nagar", "Kelleys",
+				"Ramachandra Medl.College", "Periyar Nagar", "Pattamandiri",
+				"Secretariat", "Mannur Village", "Nature Care Hospital",
+				"E.B.Office", "Maraimalai Nagar", "S.H.B", "Muttukkadu",
+				"Kummanur", "Pullarambakkam", "Kosapalayam", "P.Or & Sons",
+				"Defence Quarters", "Burmah Shell Petrol Bunk", "Nedugundram",
+				"Thirupporur", "Jn.Of.Orakadu Rd & S/Vara", "Eraiyur Junction",
+				"Thandarai", "Meyyur", "Thandalam Rd Jn.",
+				"Thillaiganga Nag Sub.3Rdm", "Somangalam", "Perambakkam",
+				"Villivakkam", "High Court", "Chembarambakkam",
+				"Mathur Village", "Gummudipoondi R.S.", "Ganesh Puram",
+				"Kalavakkam Tea Stall", "Panchalai", "Valasaravakkam",
+				"Corpn. Play Ground", "Avvai Home", "Guduvanchery",
+				"Kakkan Bridge", "Kanniampalayam", "Athur", "Rangarajapuram",
+				"Inam Agaram", "T.B.Institute", "Kuthanoor Road Jn.",
+				"Wallajabath", "Noothancheri Cross Rd.", "Kanathur",
+				"Kosappur", "C.V.D.Mitnamallee Rd.Jn.", "Pazhaverkadu",
+				"Periya Kottamedu", "Sayani/Aynavaram", "Kamabar Arangam",
+				"Tamarind Tree", "Magaral Kandigai", "Bhondhur",
+				"Manapakkam P.U.O", "Choolai Mill", "Kolapakkam",
+				"Perumathunallur", "Andersonpet", "Golden Flat", "Ambathur",
+				"Pattabiram", "Madambakkam Koil", "Jn.,Of Ponneri Rd,&Eranoo;",
+				"Pappanchatram", "Krishnan Temple/Pondy Baz",
+				"Bharath Electronics", "Airforce Station",
+				"Madurapakkam Rd.Jn.", "Vallam", "Mudhukur Cross Road",
+				"Mangadu", "Manali New Town", "Sterling Rd./Metrolog. De",
+				"Thanthoni Amman Nagar", "Siruniam Rd.Jn.",
+				"Veterinary Hospital/Prdct", "C.R.P.F",
+				"Prithiyangara Devi Temple", "Perumal Nagar Jn.",
+				"Kallikuppam", "Nemilicheri", "Pennalur E.B.",
+				"Jn.Of.Palavanthangal &Gst;", "Sikkarayapuram",
+				"Madipakkam B.S", "Chitlapakkam", "Vengambakkam", "Elavambedu",
+				"Echankuzhi", "Besant Nagar", "Alamadhi", "Housing Board",
+				"Thirusoolam National Airp", "Manamathi", "Kodungaiyur O.T.",
+				"Vadapalani P.S", "Adyar Gate", "Valarpuram",
+				"Chengammal Koot Road", "Echankadu", "Anaicutche",
+				"Nathathanallur", "Ambedkar Nagar", "Naduveerapattu",
+				"Adayar B.S.", "Ottiambakkam", "Semmanchery S.C.B.",
+				"Thirumullaivoayl", "Azhinjivakkam Village", "Kumunanchavadi",
+				"Concrete Company", "T.Nagar", "Poondi", "Meppadu Hospital",
+				"Mogapair Off.Col", "S.P.Koil", "Sonalur / Pudur",
+				"Anjugam School", "Lattice Bridge Rd. Jn.",
+				"Hindustal Egg. College", "Nallur Pudu Nagar",
+				"Sculpture Arts College", "Chiruthavoor Jn.",
+				"Pudupeir Coot Road", "Veerapuram Rd Jn.", "Kizh Nallathur",
+				"Salavankuppam/Devanori", "Sterling Rd/Meteorology D",
+				"Vandaloor R.G/Manivakkam", "D.P.I", "Q.M Arts (Men)",
+				"Mambakkam Roce Mill", "Irankuppam", "Pudukuppam",
+				"Chinmaya Nagar", "Melkalvoy", "Alandur Municipality",
+				"Vengal Cross Road", "Perungavoor", "Santhome P.O",
+				"Kattur Road Jn.", "Poongeri Jn.", "Uthamar Gandhisalai (Corp",
+				"Palakka Company", "Polytechnic", "Vilinjambakkam Amman Koil",
+				"Pallavaram Gate", "H.V.F.Main Gate", "Vengambakkam Village",
+				"Pammal Sankar Nagar", "Guindy R.S", "Thiruvallur",
+				"Kumaran Kundram", "Vaanagaram", "Panapakkam",
+				"Madarapakkam Cross Road", "Thangal", "Pammal", "Y.M.I.A",
+				"Menambedu", "Meppur", "Azhinjivakkam Rd.Jn.", "Pallavaram",
+				"Vengaivasal Rd.Jn.", "Thirumudivakkam", "Perumbakkam Limit",
+				"Illanthope", "Thirupatchur", "Jn.Of.Vly-Tbm Rd&Mvkm-K.K;",
+				"Nookampalayam Village", "Perliyambakkam", "Anna Square",
+				"Annai Sivakami Nagar", "Chembakkam Village", "Vadapalani Jn.",
+				"Vandaloor Zoo", "Thorappakkam Tea Shop", "Konimedu Rd. Jn.",
+				"Menamabakkam Old Airport", "Panapakkamedu", "Pudupakkam",
+				"Morai", "M.K.B.Nagar East", "Korukkupet", "Srinivasa Theater",
+				"Sirukundram Koot Road", "Karakku", "Surapedu",
+				"Semmancheri Kuppam", "Murugan Koil / Girugambak",
+				"Builders Industry", "T.V.S", "Manamathi Koot Rd",
+				"Ellampettai", "V.House Terminus", "Murukkancheri",
+				"Theyampakkam", "Theagaraya College", "Thandalacheri",
+				"Pandy Kavanoor Jn.", "Sun Theater", "Periyapalayam Temple",
+				"Athupakkam", "Kondanchery Christhuva Sa", "Koladi School",
+				"Secretariat Colony", "Anna University",
+				"Ponniamman Koil Rd. Jn.", "Poovalambedu", "Wesley H.S",
+				"Maternity Hospital", "National High School",
+				"Veerabadra Nagar", "Sikkaravaram", "Pazhanthandalam Road Jn.",
+				"Enambakkam", "Vengaivasal P.H.Centre", "T.N.C.F",
+				"Icf Annexe", "Five Lamps", "C.M.B.T.", "Kolathur/Nehru Rd Jn",
+				"Sholavaram P.S.", "Burial Ground", "100 Feet Road Jn.",
+				"Pillaipakkam Koot Road", "Mogalivakkam Rd. Jn.",
+				"Millers Road", "Gassgi Rate Company",
+				"Jn.Ofporur Poonam With Ma", "Manapakkam Village", "Royapuram",
+				"Sakthi Nagar", "Anna Poorna Hotel/Dams Rd",
+				"New Erumai Vetti Palayam", "Kizhur", "Nathambedu Colony",
+				"Kothari", "Dasarathapuram", "Telegraph Office",
+				"Madananadapuram", "Pandur", "Veppampattu R.S.", "Pakkam",
+				"Varanavasi", "Velachery", "Pulikulam", "Balaji Nagar",
+				"Melapedu", "Chevvaipettai R.S.", "Chettipedu", "Sriungavoor",
+				"Medavakkam", "Vellaikal", "V.House P.S", "Minjur R.S",
+				"Thiruvetriyur B.S", "Q.M.Arts College",
+				"Triplicane O.T (Corpn. Sc", "Thazhambedu", "Hasthinapuram",
+				"Kelambakkam", "Thani Poondi", "Thiruverkadu",
+				"Vazhuthalambedu Rd. Jn", "St Thomas Mount R.S",
+				"Ayanambakkam", "U.Mandaveli", "Pattur", "Pushpagiri",
+				"Broadway", "Teachers Colony", "Camp Road", "Nehru Nagar",
+				"Alandur", "Vanuvambedu", "Sathiyamoorthy Nagar",
+				"Malrosapuram", "Cipet", "Anna Nagar Colony", "Vinayagapuram",
+				"Meppedu Koot Rd", "Kaviarasu Kannadasan Naga", "Trustpuram",
+				"Padurmedu", "Palavedu", "Panrutti", "E.B.Station",
+				"Pandeswaram", "A.M.S.Hospital", "Ezhil Nagar", "Ariyalur",
+				"Kovilamcherry Village", "S.R.P. Colony", "Navalur",
+				"Semilivaram", "Palavakkam Cross Road",
+				"Veppumpattu Puliyamaram", "Ezhichur Koot Road",
+				"Madipakkam Koot Road", "Tamaraipakkam Rd.Jn.",
+				"Kodungaiyur Parvathinagar", "Vellavedu",
+				"Kuppammal Chathiram", "Central", "Slum Clearance Board",
+				"Manchankaranai", "Vadamangalam Koot Road",
+				"Vengadu Koot Road", "Arumbakkam", "Madarapakkam Bus Terminus",
+				"Kannivakkam", "Alagesa Nagar", "Vengal",
+				"Jn Of Iii And 1St Ave", "Kesava Cross Road",
+				"Nucleus Company", "Old&New; Erumai Vetti Pala",
+				"Manamathi School", "Sterling Road", "Corborundum Universal",
+				"Tamaraipakkam", "Gnayaru", "Melkottiyur",
+				"Muttukkadu Boat Yard", "Vallakkottai", "Kavangarai",
+				"Padiyanallur", "Sriperumpudur", "Ayyappa Nagar",
+				"Pondy Bazaar", "Ayapakkam", "Nallur", "Kilpauk Garden",
+				"Corporation School/Office", "Borosil Company",
+				"Sowbakkiya Nagar", "Saidapet West",
+				"Somangalam Rd /Amarambedu", "Mullai Nagar", "Uppara Palayam",
+				"Stephen Church", "Naduvankarai", "Kalaignar Nagar",
+				"Cemetry (Mandaveli)", "Venkathur", "Madambakkam",
+				"Moovarasanpet", "Bharathi Nagar", "Eannam Agaram",
+				"Pulicut Panchayat Limit", "Medhur", "Hotel Arun",
+				"Samiyar Pannai", "Mudichur", "Poombuhar", "Guindy Tvk Estate",
+				"Senkadu", "Sozhinganallur P.U.Office", "Manimangalam Rd. Jn.",
+				"Christian Hospital", "Andakuppam", "Kunnavakkam",
+				"Jn.Of Mambakkam Rd & Atan", "Thambuchetty St", "Panaiyur",
+				"Crescent Residential H.S.", "Mamallapuram", "Sadanandapuram",
+				"Saligraman", "Durgas", "Anna Nagar Circle", "Injambakkam",
+				"Pudur", "Karimedu", "Vembedu", "Alamadhi Cattle Farm",
+				"Tollgate(Sathiavedu Koot", "Velangadupakkam",
+				"Ayanavaram B.S", "Ambathur OT", "Church", "T.B.Sanatorium",
+				"Eng.College", "Madhavaram", "Pazavanthangal Road Jn.",
+				"Jn.Of Central Avenue&Erik;", "Koyambedu School",
+				"Tambaram Town Limit", "Manivakkam", "Aminijikarai", "Nemam",
+				"Chinnambedu Village", "Kotyamedu", "Oorapakkam School",
+				"Madhavaram Post Box", "Jeyapuram", "Vayalur Cross Road",
+				"Vettuvankanni", "Pillaipakkam", "Anna Road P.O./Dams Road",
+				"Mahalakshmi Nagar", "Sunnambu Kalvoy", "Mylai Koot Road",
+				"Amarambedu Village", "Ashok Leyland Mark.Div.",
+				"Poovalli Kuppam", "Ettayapuram", "Weels India Rd.Jn.",
+				"N.S.K Nagar", "Pazhanthandalam", "Neelankarai",
+				"Kannagi Nagar S.C.Board", "Vadamadurai Kandigai",
+				"Gemini P.H", "Madhavaram Village",
+				"Guindy Race Cource Office", "Thirunillai Rd.Jn.",
+				"Thatchur Koot Road", "Kavalpathy", "Cycle Shop",
+				"Irunkattukottai", "Madhavaram Milk Colony",
+				"Mel Ayanambakkam", "Fore Shore Estate", "Concorde",
+				"Choolai P.O", "Vattambakkam", "Athipet I.C.F. Colony",
+				"Jamalaya", "Vinayagar Koil", "Varadharaja Theater",
+				"Old Erumai Vetti Palayam", "Koothavakkam School", "Minjur",
+				"Egmore", "Puzhithivakkam B.S", "Kottur Nsk Statue",
+				"Corporation Office/Sterli", "Tb Hospital",
+				"Irulapalayam Rd Jn.", "Pushpa Nagar", "Chidambaram Stores",
+				"Periamullaivoyal", "Uthukkottai", "Ramasamy Nagar",
+				"Jn.Of P.T.R Rd/Kamaraj Rd", "Kodungaiyur(Parvathi Naga",
+				"Sundarasozhapuram", "Dasaprakash", "Odeon Mani",
+				"Thirumalisai", "Ponmar", "Convent", "Parivakkam", "Verkadu",
+				"Kundrathur Murugan Temple", "Pagalmedu", "Thiruvanmiyur",
+				"Govardanagiri", "M.M.D.A.Colony", "Chinnakuvanam",
+				"Sulerikadu", "Ayyappan Thangal", "Arumandai Rd.Jn.",
+				"Nagalkeni", "Arakkambakkam", "Medavakkam Jn.",
+				"Anjathamman Koil", "V. Nagar", "Karanodai", "Nazarath",
+				"Thiruthuveli", "Royapuram P.S", "Oragadam", "Camp",
+				"Karumanoor Kandigai", "M.M.D.A.Colony Rd.Jn.",
+				"Kalaignar Nagar West", "Thillai Ganga Nagr Iind M",
+				"Devanathan St / Mandaveli", "V.M.Street", "Thumbakkam",
+				"Aranvoyal", "Ennore", "Perunthandalam", "Alamadhi Old",
+				"Ernakuppma", "Guruvoyal Karanibattai", "Kandan Kollai",
+				"Poondi Koot Road (Neyveli", "Poochiathibedu",
+				"Ekkadu Water Tank(Teacher", "Pollachiammankulam",
+				"Mettupalayam", "Chinambedu Colony", "Budur", "I.C.F.Colony",
+				"Koovam", "Kizhkalvoy", "Kumaran Nagar", "New Nagar",
+				"Perambur Market", "Kanni Koil", "Ananda Nagar", "Ayalchery",
+				"Chitlapakkam B.S", "F.C.I Old", "Athipet Jn",
+				"Alapakkam Koot Road", "Semmanchery", "Mosque",
+				"Govt. Girls H.Sc", "Tambaram", "Kolapakkam Rice Mill",
+				"Mogapair West", "Virugambakkam", "Nandambakkam Village",
+				"Police Quarters", "Paventher Salai", "Chettimedu",
+				"Manimangalam Village", "Anakaputhur", "V.S.B.Garden",
+				"Veterinary Hospital", "Q.M.C", "Pattunool Chatram",
+				"Sarma Nagar", "Nandambakkam", "Mahendra City(Chetty Punn",
+				"K.M.C", "Kathirvedu", "Karanai", "Kotturpuram",
+				"Pammadu Kulam Rd.Jn.", "Tharatchi Colony", "Thirupalaivanam",
+				"Karapakkam", "Arakkambakkam Rd.Jn.", "Thirunindravoor",
+				"A.G.S Office Colony", "2Nd Water Tank On Second",
+				"Ellaiamman Koil", "Manamathi Jn.", "Perungulathur",
+				"Irulapalayam", "Mogapair", "Sri Sankara Health Centre",
+				"Mahalingapuram", "Sarapanchery", "Nandambakkam Kalaignar Na",
+				"Thorappakkam P.T.C Colony", "Vengoor Junction", "Amman Kulam",
+				"Sipcot", "Anna Nagar West", "Meppedu", "Muthamil Nagar",
+				"Kilkondaiyur", "Tambaram East", "Echankuzhi /Manali New To",
+				"Indira Nagar", "Kosapur Rd. Jn.,", "Kattur Cross Road",
+				"Perumbur", "Venkatamangam", "Ambathur Estate",
+				"Kamaraj Nagar", "Vijaya Nagar", "Hindu Vidyalaya",
+				"Kargil Nagar", "Therasapuram", "Neithavoyal", "Keerapakkam",
+				"Agaram Mel", "New Road", "Kolathur", "G.K.M.Colony", "Pothur",
+				"Kavaraipalayam", "Velachery Hospital", "Madipakkam Rd. Jn.",
+				"Tollgate", "Dunlop", "Thiruvengadapuram", "Thiruneermalai",
+				"Karanodai School", "Vilambakkam", "Puliyur",
+				"Mathur M.M.D.A.", "Velappanchavadi", "Saidapet",
+				"Oonamancheri", "Luz", "Kizhanoor", "M.K.B.Nagar", "Parrys",
+				"T.V.T Rly Gate", "Sumenthiramedu Koot Road", "C.I.T.Colony",
+				"Maduravoyal", "Sidco", "Avadi Mosque", "Thruvotriyur Temple",
+				"Ekkadu Csi Hospital", "Chittukadu", "Vadhattur Jn.",
+				"P1.Police Station", "Payyanoor", "Chetpet",
+				"Dharmaprakash/Petrol Bunk", "Vishnuvakkam",
+				"Jn.Of Race Course Rd", "Tsr Rajalakshmi Nagar",
+				"Madhavaram Junction", "Alwar Thirunagar", "Ariyapakkam",
+				"Jn.Of.Arterial Rd With 40", "Jn. Of R.Garden & Pevr H.",
+				"Veppampattu", "Manimangalam", "Kamarajapuram",
+				"T.Acharavakkam", "Ponneri", "Chenglepet O.T.", "Adayar Depot",
+				"Perumalpattu", "Srp Tools", "Senthil Nagar", "Annambedu",
+				"Pogalmedu", "Defence Colony", "Kilkattalai",
+				"Oragadam Koot Road", "S.I.V.E.T", "Kovalam", "N.G.O.Colony",
+				"Agaram Then", "Kandanchavadi", "Poonchery Koot Road",
+				"Puthuchathiram", "Pammadukulam Colony", "I.O.C",
+				"Adayar O.T.", "Porur", "Narayanapuram", "Taylors Road",
+				"Irumbuliyur", "Dharmapuram Kandigai", "Mogapair Road Jn",
+				"Amarambedu Road", "Mambakkam", "Sunnambu Kolathur",
+				"Kasanoor", "Peavallur Kumaran Nagar", "U.S.I.S.",
+				"Muthapudupet", "Avadi Road Jn.", "Vadanemili", "Vembakkam",
+				"Chrompet", "Government School / Hospi", "Poonthandalam",
+				"Krishna Karanai", "Kayaar", "Victoria Teachers Colony",
+				"Cowl Bazaar", "Manalai Seekadu", "Mandaveli", "Paraniputhur",
+				"Sadurangapettai", "Kavanoor", "Melpakkam", "Thiruvedanthai",
+				"R.R.Kandigai", "Paruthipattu Rd. Jn.", "Kannigaipeir",
+				"Venkathakulam", "Alapakkam", "Manali Rd Jn.",
+				"Ayyappan Madam", "Varadaraja Puram", "Veenus",
+				"Nanmabgalam Rd. Jn.", "Orakkadu", "Anna Nagar",
+				"Periyapanicheri", "M.G.R.Nagar", "Kosappur Puo" ];
+		var data;
+		var at = new Array();
+		var bnm;
+		$.getJSON(' http://busroutes.in/chennai/api/autocomplete/stages ',
+				function(json) {
+					data = json;
+				});
+		$("#from").autocomplete({
+			source : stages
+		});
+		$("#to").autocomplete({
+			source : stages
+		});
+		$("#find")
+				.click(
+						function() {
+							var fromId = data[$("#from").val()];
+							var toId = data[$("#to").val()];
+							if (fromId == null) {
+								alert("Invalid Stage Name: \""
+										+ $("#from").val()
+										+ "\"\nChoose any one of the suggested stage names.");
+								return;
+							}
+							if ($("#to").val() == '') {
+								top.location = "http://busroutes.in/chennai/stage/"
+										+ fromId + "/";
+							} else if (toId == null) {
+								alert("Invalid Stage Name: \""
+										+ $("#to").val()
+										+ "\"\nChoose any one of the suggested stage names.");
+								return;
+							} else {
+								var url = 'http://busroutes.in/chennai/path/'
+										+ fromId + '/' + toId + '/';
+								$
+										.get(
+												url,
+												function(html) {
+													var data = html
+															.substring(
+																	html
+																			.indexOf("<div class=\"leftCol\">"),
+																	html
+																			.indexOf("<div id=\"map\">"));
+													while (data.indexOf("From") > 0) {
+														var from = data
+																.substring(
+																		data
+																				.indexOf("From") + 5,
+																		data
+																				.indexOf("<br />"));
+														from = from
+																.substring(
+																		from
+																				.indexOf(">") + 1,
+																		from
+																				.indexOf("</a>"));
+														var to = data
+																.substring(
+																		data
+																				.indexOf("To") + 3,
+																		data
+																				.indexOf(
+																						"</a>",
+																						data
+																								.indexOf("To")));
+														to = to
+																.substring(to
+																		.indexOf(">") + 1);
+														var take = data
+																.substring(
+																		data
+																				.indexOf("Take"),
+																		data
+																				.indexOf("<hr />"));
+														from.trim();
+														to.trim();
+														var bus = "";
+														while (take
+																.indexOf("<a href=") > 0) {
+															bus += ", "
+																	+ take
+																			.substring(
+																					take
+																							.indexOf("/\">") + 3,
+																					take
+																							.indexOf(
+																									"</a>",
+																									take
+																											.indexOf("/\">") + 3))
+																			.trim();
+															take = (take
+																	.substring(take
+																			.indexOf("/\">") + 3));
+														}
+														var i = data
+																.indexOf(
+																		"<h3>",
+																		data
+																				.indexOf(to));
+														if (i > 0) {
+															data = data
+																	.substring(i);
+														} else {
+															data = "";
+														}
+														$("#formlist")
+																.append(
+																		"<h3>"
+																				+ from
+																				+ " to "
+																				+ to
+																				+ "</h3><p>"
+																				+ bus
+																						.substring(1)
+																				+ "</p>");
+													}
+												});
+							}
+						});
+	});
+</script>
+</head>
+<body>
+	<div data-role="page">
+		<div data-role="header">
+			<h1>busroutes.in | Chennai</h1>
+		</div>
+		<!-- /header -->
+
+		<div data-role="content">
+			<form>
+				<ul data-role="listview" data-theme="g">
+					<li><label for="from">From:</label> <input type="text"
+						name="from" id="from" value="" /></li>
+					<li><label for="to">To:</label> <input type="text" name="to"
+						id="to" value="" /></li>
+					<li><button type="button" id="find" data-theme="b">Find
+							Routes</button></li>
+				</ul>
+
+			</form>
+			<div data-role="collapsible" id="formlist"></div>
+
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#">Home</a></li>
+				</ul>
+			</div>
+			<!-- /navbar -->
+		</div>
+		<!-- /footer -->
+	</div>
+	<!-- /page -->
+</body>
+</html>
