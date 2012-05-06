@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="hello">Hello World, ChennaibusrouteActivity!</string>
-    <string name="app_name">Chennaibusroute</string>
+    <string name="app_name">Chennai Bus Routes</string>
+    <string name="description">Android App for the website http://busroutes.in/chennai/</string>
 
 </resources>
