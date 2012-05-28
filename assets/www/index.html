@@ -349,6 +349,7 @@
 		$("#find")
 				.click(
 						function() {
+							event.preventDefault();
 							var fromId = data[$("#from").val()];
 							var toId = data[$("#to").val()];
 							if (fromId == null) {
