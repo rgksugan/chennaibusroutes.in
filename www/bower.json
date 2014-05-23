@@ -1,0 +1,11 @@
+{
+  "name": "chennai-bus-routes",
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "jquery-mobile": "~1.4.2",
+    "gulp": "*"
+  },
+  "resolutions": {
+    "jquery": "~2.1.1"
+  }
+}
