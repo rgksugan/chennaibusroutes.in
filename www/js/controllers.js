@@ -18,4 +18,16 @@ angular.module('starter.controllers', [])
   $scope.findRoutes = function (from, to) {
     $scope.modal.show();
   };
+})
+
+.directive('autoComplete', function() {
+  return {
+    link: function (scope, element) {
+      $.get('js/stages.json', function (stages) {
+        element.autocomplete({
+          source: stages
+        });
+      });
+    }
+  };
 });
