@@ -38,6 +38,16 @@ angular.module('bus', ['ionic', 'starter.controllers'])
           controller: 'TripCtrl'
         }
       }
+    })
+
+    .state('app.search', {
+      url: "/search",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/search.html",
+          controller: 'SearchCtrl'
+        }
+      }
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/trip');
