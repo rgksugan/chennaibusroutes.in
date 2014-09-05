@@ -13,7 +13,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('SearchCtrl', function($scope, $http, $rootScope) {
+.controller('SearchCtrl', function($scope, $http, $rootScope, $location) {
 
   $scope.searchResults = [];
 
@@ -33,18 +33,26 @@ angular.module('starter.controllers', [])
 
   $scope.setSearchResult = function (stage) {
     $rootScope.searchResult = stage;
+    $location.path('/app/trip');
   };
 })
 
-.controller('TripCtrl', function($scope, $location) {
+.controller('TripCtrl', function($scope, $location, $rootScope) {
   $scope.goToSearch = function (search) {
-    console.log(search, $location);
-    $location.path( '/app/search' );
+    $location.path('/app/search');
+    $rootScope.searchField = search;
   };
+
+  if ($rootScope.searchField && $rootScope.searchText) {
+    $scope.trip[$rootScope.searchField] = $rootScope.searchText;
+    console.log('scope trip', $scope.trip);
+  }
+
   $scope.trip = {
     from: '',
     to: ''
   };
+
   $scope.findRoutes = function () {
     var data;
     var at = [];
