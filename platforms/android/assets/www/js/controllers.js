@@ -56,7 +56,6 @@ angular.module('starter.controllers', [])
     var toStage = $rootScope.trip.to;
     $http.get('http://busroutes.in/chennai/api/autocomplete/stages').success(function (json) {
       data = json;
-      console.log('data', data, data[fromStage]);
       var fromId = data[fromStage];
       var toId = data[toStage];
       if (fromId == null) {
@@ -70,9 +69,7 @@ angular.module('starter.controllers', [])
         return;
       } else {
         var url = 'http://busroutes.in/chennai/path/' + fromId + '/' + toId + '/';
-        console.log('html', fromId, toId);
         $http.get(url).success(function(html) {
-          console.log('html', html);
           var data = html.substring(html.indexOf("<div class=\"leftCol\">"), html.indexOf("<div id=\"map\">"));
           while (data.indexOf("From") > 0) {
             var from = data.substring(data.indexOf("From") + 5, data.indexOf("<br />"));
@@ -93,7 +90,7 @@ angular.module('starter.controllers', [])
             } else {
               data = "";
             }
-            console.log(bus.substring(1));
+            console.log('results', from, to, bus.substring(1));
             // $("#formlist").append("<h3>" + from + " to " + to + "</h3><p>" + bus.substring(1)+ "</p>");
           }
         });
