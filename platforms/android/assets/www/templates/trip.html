@@ -5,10 +5,10 @@
   <ion-content class="has-header padding" has-bouncing="false">
 	<div class="list">
 		<label class="item item-input">
-			<input type="text" placeholder="From" auto-complete id="from">
+			<input type="text" placeholder="From" id="from" ng-click="goToSearch('from')" ng-model="trip.from">
 		</label>
 		<label class="item item-input">
-			<input type="text" placeholder="To" auto-complete id="to">
+			<input type="text" placeholder="To" id="to" ng-click="goToSearch('to')" ng-model="trip.to">
 		</label>
 	</div>
     <button class="item button button-block button-outline button-positive" ng-click="findRoutes()">

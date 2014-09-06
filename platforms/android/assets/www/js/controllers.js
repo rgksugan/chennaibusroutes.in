@@ -13,18 +13,48 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('TripCtrl', function($scope) {
-  $scope.trip = {
-    from: '',
-    to: ''
+.controller('SearchCtrl', function($scope, $http, $rootScope, $location) {
+
+  $http.get('/js/stages.json').success(function (stages) {
+    $scope.stages = stages;
+    $scope.searchResults = stages;
+  });
+
+  $scope.searchStages = function (searchText) {
+    $scope.searchResults = [];
+    searchText = searchText.trim().toLowerCase();
+    $scope.stages.forEach(function (stage) {
+      if (stage.toLowerCase().indexOf(searchText) >= 0) {
+        $scope.searchResults.push(stage);
+      }
+    });
   };
+
+  $scope.setSearchResult = function (stage) {
+    $rootScope.searchResult = stage;
+    $location.path('/app/trip');
+  };
+})
+
+.controller('TripCtrl', function($scope, $location, $rootScope, $http) {
+  $scope.goToSearch = function (search) {
+    $location.path('/app/search');
+    $rootScope.searchField = search;
+  };
+
+  $rootScope.trip = $rootScope.trip || {};
+
+  if ($rootScope.searchField && $rootScope.searchResult) {
+    $scope.trip[$rootScope.searchField] = $rootScope.searchResult;
+  }
+
   $scope.findRoutes = function () {
     var data;
     var at = [];
     var bnm;
-    var fromStage = $("#from").val();
-    var toStage = $("#to").val();
-    $.get(' http://busroutes.in/chennai/api/autocomplete/stages ', function(json) {
+    var fromStage = $rootScope.trip.from;
+    var toStage = $rootScope.trip.to;
+    $http.get('http://busroutes.in/chennai/api/autocomplete/stages').success(function (json) {
       data = json;
       var fromId = data[fromStage];
       var toId = data[toStage];
@@ -40,7 +70,7 @@ angular.module('starter.controllers', [])
       } else {
         var url = 'http://busroutes.in/chennai/path/' + fromId + '/' + toId + '/';
         console.log('html', fromId, toId);
-        $.get(url, function(html) {
+        $http.get(url).success(function(html) {
           console.log('html', html);
           var data = html.substring(html.indexOf("<div class=\"leftCol\">"), html.indexOf("<div id=\"map\">"));
           while (data.indexOf("From") > 0) {
@@ -62,23 +92,12 @@ angular.module('starter.controllers', [])
             } else {
               data = "";
             }
+            console.log(bus.substring(1));
             $("#formlist").append("<h3>" + from + " to " + to + "</h3><p>" + bus.substring(1)+ "</p>");
           }
         });
       }
     });
     $scope.modal.show();
-  };
-})
-
-.directive('autoComplete', function() {
-  return {
-    link: function (scope, element) {
-      $.get('js/stages.json', function (stages) {
-        element.autocomplete({
-          source: stages
-        });
-      });
-    }
   };
 });
