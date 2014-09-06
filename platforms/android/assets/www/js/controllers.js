@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
 
 .controller('SearchCtrl', function($scope, $http, $rootScope, $location) {
 
-  $http.get('/js/stages.json').success(function (stages) {
+  $http.get('js/stages.json').success(function (stages) {
     $scope.stages = stages;
     $scope.searchResults = stages;
   });
@@ -56,16 +56,17 @@ angular.module('starter.controllers', [])
     var toStage = $rootScope.trip.to;
     $http.get('http://busroutes.in/chennai/api/autocomplete/stages').success(function (json) {
       data = json;
+      console.log('data', data, data[fromStage]);
       var fromId = data[fromStage];
       var toId = data[toStage];
       if (fromId == null) {
-        alert("Invalid Stage Name: \"" + $("#from").val() + "\"\nChoose any one of the suggested stage names.");
+        alert("Invalid Stage Name: \"" + fromStage + "\"\nChoose any one of the suggested stage names.");
         return;
       }
       if (toStage == '') {
         top.location = "http://busroutes.in/chennai/stage/" + fromId + "/";
       } else if (toId == null) {
-        alert("Invalid Stage Name: \"" + $("#to").val() + "\"\nChoose any one of the suggested stage names.");
+        alert("Invalid Stage Name: \"" + toStage + "\"\nChoose any one of the suggested stage names.");
         return;
       } else {
         var url = 'http://busroutes.in/chennai/path/' + fromId + '/' + toId + '/';
@@ -93,7 +94,7 @@ angular.module('starter.controllers', [])
               data = "";
             }
             console.log(bus.substring(1));
-            $("#formlist").append("<h3>" + from + " to " + to + "</h3><p>" + bus.substring(1)+ "</p>");
+            // $("#formlist").append("<h3>" + from + " to " + to + "</h3><p>" + bus.substring(1)+ "</p>");
           }
         });
       }
