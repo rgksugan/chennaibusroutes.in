@@ -54,7 +54,7 @@ angular.module('starter.controllers', [])
     var bnm;
     var fromStage = $rootScope.trip.from;
     var toStage = $rootScope.trip.to;
-    $http.get('http://busroutes.in/chennai/api/autocomplete/stages').success(function (json) {
+    $http.get('js/stages_index.json').success(function (json) {
       data = json;
       var fromId = data[fromStage];
       var toId = data[toStage];

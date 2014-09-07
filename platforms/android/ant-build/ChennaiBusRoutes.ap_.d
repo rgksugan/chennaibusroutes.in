@@ -46,6 +46,7 @@
 /Users/sugan/play/chennaibusroutes.in/platforms/android/assets/www/js/routes_detail.json \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/assets/www/js/routes_index.json \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/assets/www/js/stages.json \
+/Users/sugan/play/chennaibusroutes.in/platforms/android/assets/www/js/stages_index.json \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/assets/www/lib/ionic \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/assets/www/lib/ionic/css \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/assets/www/lib/ionic/fonts \

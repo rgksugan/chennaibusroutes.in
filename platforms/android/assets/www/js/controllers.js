@@ -54,7 +54,7 @@ angular.module('starter.controllers', [])
     var bnm;
     var fromStage = $rootScope.trip.from;
     var toStage = $rootScope.trip.to;
-    $http.get('http://busroutes.in/chennai/api/autocomplete/stages').success(function (json) {
+    $http.get('js/stages_index.json').success(function (json) {
       data = json;
       var fromId = data[fromStage];
       var toId = data[toStage];
@@ -91,7 +91,6 @@ angular.module('starter.controllers', [])
               data = "";
             }
             console.log('results', from, to, bus.substring(1));
-            // $("#formlist").append("<h3>" + from + " to " + to + "</h3><p>" + bus.substring(1)+ "</p>");
           }
         });
       }
