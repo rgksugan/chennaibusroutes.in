@@ -1,23 +1,14 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope) {
 
-  $ionicModal.fromTemplateUrl('templates/results.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
 })
 
 .controller('SearchCtrl', function($scope, $http, $rootScope, $location) {
 
   $http.get('js/stages.json').success(function (stages) {
     $scope.stages = stages;
-    $scope.searchResults = stages;
+    $scope.searchResults = stages.sort();
   });
 
   $scope.searchStages = function (searchText) {
@@ -36,7 +27,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('TripCtrl', function($scope, $location, $rootScope, $http) {
+.controller('TripCtrl', function($scope, $location, $rootScope, $http, $ionicModal) {
   $scope.goToSearch = function (search) {
     $location.path('/app/search');
     $rootScope.searchField = search;
@@ -49,6 +40,7 @@ angular.module('starter.controllers', [])
   }
 
   $scope.findRoutes = function () {
+    $scope.buses = [];
     var data;
     var at = [];
     var bnm;
@@ -90,11 +82,25 @@ angular.module('starter.controllers', [])
             } else {
               data = "";
             }
-            console.log('results', from, to, bus.substring(1));
+            $scope.buses.push({
+              from: from,
+              to: to,
+              bus: bus.substring(1)
+            });
           }
         });
       }
     });
-    $scope.modal.show();
+
+    $ionicModal.fromTemplateUrl('templates/results.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modal = modal;
+      $scope.modal.show();
+    });
+
+    $scope.closeResults = function() {
+      $scope.modal.hide();
+    };
   };
 });

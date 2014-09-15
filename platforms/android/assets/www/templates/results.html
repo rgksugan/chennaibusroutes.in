@@ -2,13 +2,13 @@
   <ion-header-bar class="bar-positive">
     <h1 class="title">Routes</h1>
     <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Close</button>
+      <button class="button button-clear" ng-click="closeResults()">Close</button>
     </div>
   </ion-header-bar>
   <ion-content>
-    <div class="card">
+    <div class="card" ng-repeat="bus in buses">
       <div class="item item-text-wrap">
-        Hello
+        <h3>From {{bus.from}} To {{bus.to}}</h3><p>{{bus.bus}}</p>
       </div>
     </div>
   </ion-content>

@@ -48,6 +48,15 @@ angular.module('bus', ['ionic', 'starter.controllers'])
           controller: 'SearchCtrl'
         }
       }
+    })
+
+    .state('app.coming-soon', {
+      url: "/soon",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/coming-soon.html"
+        }
+      }
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/trip');

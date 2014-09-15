@@ -122,6 +122,7 @@
 /Users/sugan/play/chennaibusroutes.in/platforms/android/assets/www/plugins/com.ionic.keyboard/www/keyboard.js \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/assets/www/plugins/org.apache.cordova.device/www \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/assets/www/plugins/org.apache.cordova.device/www/device.js \
+/Users/sugan/play/chennaibusroutes.in/platforms/android/assets/www/templates/coming-soon.html \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/assets/www/templates/menu.html \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/assets/www/templates/results.html \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/assets/www/templates/search.html \
