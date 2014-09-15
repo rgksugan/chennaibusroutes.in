@@ -1,4 +1,4 @@
-/Users/sugan/play/chennaibusroutes.in/platforms/android/ant-gen/com/ionicframework/chennaibusroutes304808/R.java \
+/Users/sugan/play/chennaibusroutes.in/platforms/android/ant-gen/in/rgksugan/chennaibusroutes/R.java \
  : /Users/sugan/play/chennaibusroutes.in/platforms/android/res/drawable/icon.png \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/res/drawable-hdpi/icon.png \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/res/drawable-land-hdpi/screen.png \

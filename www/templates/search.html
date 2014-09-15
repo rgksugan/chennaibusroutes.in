@@ -4,7 +4,8 @@
 		<input type="text" placeholder="Search" ng-model="searchText" ng-change="searchStages(searchText)" autofocus>
 	</label>
     <div class="list">
-    	<div class="item" ng-repeat="stage in searchResults" ng-click="setSearchResult(stage)" on-infinite="loadMore()">{{stage}}</div>
+    	<div class="item" ng-repeat="stage in searchResults" ng-click="setSearchResult(stage)">{{stage}}</div>
+    	<ion-infinite-scroll on-infinite="loadMore()"></ion-infinite-scroll>
     </div>
   </ion-content>
 </ion-view>

@@ -10,5 +10,12 @@
 /Users/sugan/play/chennaibusroutes.in/platforms/android/ant-build/classes/com/ionicframework/chennaibusroutes304808/R$string.class \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/ant-build/classes/com/ionicframework/chennaibusroutes304808/R$xml.class \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/ant-build/classes/com/ionicframework/chennaibusroutes304808/R.class \
+/Users/sugan/play/chennaibusroutes.in/platforms/android/ant-build/classes/in/rgksugan/chennaibusroutes/BuildConfig.class \
+/Users/sugan/play/chennaibusroutes.in/platforms/android/ant-build/classes/in/rgksugan/chennaibusroutes/ChennaiBusRoutes.class \
+/Users/sugan/play/chennaibusroutes.in/platforms/android/ant-build/classes/in/rgksugan/chennaibusroutes/R$attr.class \
+/Users/sugan/play/chennaibusroutes.in/platforms/android/ant-build/classes/in/rgksugan/chennaibusroutes/R$drawable.class \
+/Users/sugan/play/chennaibusroutes.in/platforms/android/ant-build/classes/in/rgksugan/chennaibusroutes/R$string.class \
+/Users/sugan/play/chennaibusroutes.in/platforms/android/ant-build/classes/in/rgksugan/chennaibusroutes/R$xml.class \
+/Users/sugan/play/chennaibusroutes.in/platforms/android/ant-build/classes/in/rgksugan/chennaibusroutes/R.class \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/ant-build/classes/org/apache/cordova/device/Device.class \
 /Users/sugan/play/chennaibusroutes.in/platforms/android/ant-build/dexedLibs/classes-41acb7622d5934b9e41c6483cd8057f8.jar \

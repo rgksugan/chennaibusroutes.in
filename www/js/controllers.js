@@ -6,14 +6,19 @@ angular.module('starter.controllers', [])
 
 .controller('SearchCtrl', function($scope, $http, $rootScope, $location) {
 
+  $scope.pageSize = 15;
+  $scope.currentPage = 1;
+  $scope.searchText = null;
+
   $http.get('js/stages.json').success(function (stages) {
-    $scope.stages = stages;
-    $scope.searchResults = stages.sort();
+    $scope.stages = stages.sort();
+    $scope.searchResults = _.first($scope.stages, $scope.pageSize);
   });
 
   $scope.searchStages = function (searchText) {
     $scope.searchResults = [];
     searchText = searchText.trim().toLowerCase();
+    $scope.searchText = searchText;
     $scope.stages.forEach(function (stage) {
       if (stage.toLowerCase().indexOf(searchText) >= 0) {
         $scope.searchResults.push(stage);
@@ -24,6 +29,16 @@ angular.module('starter.controllers', [])
   $scope.setSearchResult = function (stage) {
     $rootScope.searchResult = stage;
     $location.path('/app/trip');
+  };
+
+  $scope.loadMore = function () {
+    if (!$scope.searchText) {
+      $scope.searchResults = _.first($scope.stages, $scope.pageSize * $scope.currentPage);
+      $scope.currentPage++;
+    } else {
+      $scope.currentPage = 1;
+    }
+    $scope.$broadcast('scroll.infiniteScrollComplete');
   };
 })
 

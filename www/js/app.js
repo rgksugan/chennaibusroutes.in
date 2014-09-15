@@ -50,11 +50,20 @@ angular.module('bus', ['ionic', 'starter.controllers'])
       }
     })
 
-    .state('app.coming-soon', {
-      url: "/soon",
+    .state('app.routes', {
+      url: "/routes",
       views: {
         'menuContent' :{
-          templateUrl: "templates/coming-soon.html"
+          templateUrl: "templates/routes.html"
+        }
+      }
+    })
+
+    .state('app.locator', {
+      url: "/locator",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/locator.html"
         }
       }
     });

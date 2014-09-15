@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.chennaibusroutes304808" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="in.rgksugan.chennaibusroutes" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
     <preference name="AndroidLaunchMode" value="singleTop" />
     <feature name="App">
@@ -14,10 +14,10 @@
     </feature>
     <name>ChennaiBusRoutes</name>
     <description>
-        An Ionic Framework and Cordova project.
+        An app to find the bus to take between two places in chennai.
     </description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+    <author email="rgk.sugan@gmail.com" href="http://www.rgksugan.in/">
+      Sugan Gopalakrishnan
     </author>
     <content src="index.html" />
     <access origin="*" />
